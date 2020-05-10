@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {TokenInterceptor} from './interceptors/token.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
@@ -134,11 +133,6 @@ import { SetMarkComponent } from './set-mark/set-mark.component';
     PortalModule,
 
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  }],
   bootstrap: [AppComponent],
   entryComponents: [CreateSubjectComponent, ChangeTeacherComponent, CreateGroupComponent,
     AddStudentsComponent, AdminSetTeachersComponent, AdminSetStudentsComponent, AdminCreateSpecialtyComponent,

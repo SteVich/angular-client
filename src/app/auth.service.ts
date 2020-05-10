@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 
-const apiUrl = 'https://git.heroku.com/univer-sv-server.git';
+const apiUrl = 'https://univer-sv-server.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root'

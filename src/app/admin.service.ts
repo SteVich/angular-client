@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {Specialty} from "./admin-create-specialty/specialty";
 
-const apiUrl = 'https://git.heroku.com/univer-sv-server.git';
+const apiUrl = 'https://univer-sv-server.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root'
