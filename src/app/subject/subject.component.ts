@@ -47,10 +47,6 @@ export class SubjectComponent implements OnInit {
 
   }
 
-  getSubjectInfo(id: any) {
-
-  }
-
   changeSubjectTeacher(subject: Subject) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

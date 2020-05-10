@@ -9,7 +9,7 @@
     <div class="button-row" align="center">
       <button type="submit" mat-flat-button class="button-row" color=primary (click)="loadTable()">Update table
       </button>
-      <button type="submit" mat-flat-button class="button-row" color=primary (click)="addGroup()">Create group
+      <button type="submit" mat-flat-button class="button-row" color=primary (click)="addGroup() " *ngIf="role == 'admin'">Create group
       </button>
     </div>
 

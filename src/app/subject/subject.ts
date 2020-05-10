@@ -2,6 +2,6 @@ import {Teacher} from "./teacher";
 
 export class Subject {
   id: number;
-  name: string;
+  subjectName: string;
   teacher: Teacher;
 }
