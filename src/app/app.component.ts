@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('userRole');
+    localStorage.removeItem('Role');
     localStorage.setItem('LoggedIn', 'false')
     this.isLoggedIn$ = false;
     this.router.navigate(['signin']);

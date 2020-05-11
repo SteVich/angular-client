@@ -34,7 +34,7 @@
           <button mat-button (click)="viewStudents(row)">
             <mat-icon>visibility</mat-icon>
           </button>
-          <button mat-button (click)="addStudent(row)">
+          <button mat-button (click)="addStudent(row)" *ngIf="role == 'admin'">
             <mat-icon>person_add</mat-icon>
           </button>
         </td>

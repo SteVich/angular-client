@@ -1,3 +1,5 @@
+import {Specialty} from '../admin-create-specialty/specialty';
+
 export class User {
   username: string;
   name: string;

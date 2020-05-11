@@ -53,9 +53,9 @@ export class RegisterComponent implements OnInit {
     user = JSON.parse(JSON.stringify(form));
     console.log(user.specialty);
     console.log(user.course);
-    if (user.isTeacher == false && user.specialty === '') {
+    if (user.isTeacher === false && user.specialty === null) {
       this.errorAlert('Specialty does not set', 'Ok');
-    } else if (user.isTeacher == false && user.course === null) {
+    } else if (user.isTeacher === false && user.course === null) {
       this.errorAlert('Course does not set', 'Ok');
     } else {
       this.authService.register(form)

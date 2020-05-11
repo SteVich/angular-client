@@ -18,7 +18,7 @@ import {ViewGroupsInASubjectComponent} from '../view-groups-in-a-subject/view-gr
 export class SubjectComponent implements OnInit {
 
   subject: Subject = new Subject();
-  displayedColumns: string[] = ['id', 'name', 'teacherName', 'info', 'changeTeacher'];
+  displayedColumns: string[] = ['id', 'name', 'teacherName', 'info'];
   groups: Group[];
   role: string;
 

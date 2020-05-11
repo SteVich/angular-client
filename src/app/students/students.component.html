@@ -35,8 +35,8 @@
         <td mat-cell *matCellDef="let row">{{row.mark}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="updateMark">
-        <th mat-header-cell *matHeaderCellDef>Update Mark</th>
+      <ng-container matColumnDef="updateMark" >
+        <th mat-header-cell *matHeaderCellDef><span *ngIf="(role == 'admin' || role == 'teacher')">Update Mark</span></th>
         <td mat-cell *matCellDef="let row">
           <button mat-button (click)="changeStudentMark(row)" *ngIf="(role == 'admin' || role == 'teacher')">
             <mat-icon>build</mat-icon>

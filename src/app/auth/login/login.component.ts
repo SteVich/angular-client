@@ -3,9 +3,9 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {AuthService} from '../../auth.service';
 import {Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {AppComponent} from "../../app.component";
-import {User} from "../user";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {AppComponent} from '../../app.component';
+import {User} from '../user';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.setItem('LoggedIn', 'false')
+    localStorage.setItem('LoggedIn', 'false');
     this.loginForm = this.formBuilder.group({
       'usernameOrEmail': [null, Validators.required],
       'password': [null, Validators.required]
@@ -35,26 +35,26 @@ export class LoginComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    var username = this.getUsername(form)
-    var password = this.getPassword(form)
+    let username = this.getUsername(form);
+    let password = this.getPassword(form);
 
     this.authService.login(form).subscribe(data => {
       this.user = data[0];
       if (this.user !== undefined && this.user.username === username && this.user.password === password) {
-        localStorage.setItem('LoggedIn', 'true')
-        localStorage.setItem('Role', this.user.role)
+        localStorage.setItem('LoggedIn', 'true');
+        localStorage.setItem('Role', this.user.role);
 
         this.appComponent.isLoggedIn$ = true;
         this.appComponent.userRole = this.user.role;
-        if(this.user.role === 'admin'){
+        if (this.user.role === 'admin') {
           this.router.navigate(['admin']);
-        }else {
+        } else {
           this.router.navigate(['subjects']);
         }
       } else {
-        this.errorAlert("Bad credentials", "Ok");
+        this.errorAlert('Bad credentials', 'Ok');
       }
-    }, error => this.errorAlert("Bad credentials, please try again", "Ok")
+    }, error => this.errorAlert('Bad credentials, please try again', 'Ok')
   );
 
   }

@@ -29,7 +29,7 @@
         <td mat-cell *matCellDef="let row">{{row.user.name}}</td>
       </ng-container>
       <ng-container matColumnDef="info">
-        <th mat-header-cell *matHeaderCellDef>Group Actions</th>
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let row">
           <button mat-button (click)="showGroups(row.id)">
             <mat-icon>visibility</mat-icon>
@@ -38,12 +38,6 @@
                   (click)="addGroupToSubject(row.id )">
             <mat-icon>library_add</mat-icon>
           </button>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="changeTeacher">
-        <th mat-header-cell *matHeaderCellDef >Change teacher</th>
-        <td mat-cell *matCellDef="let row" >
           <button mat-button (click)="changeSubjectTeacher(row)" *ngIf="role == 'admin'">
             <mat-icon>build</mat-icon>
           </button>

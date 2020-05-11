@@ -4,6 +4,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {User} from '../auth/user';
 import {GroupService} from '../group.service';
 import {SetMarkComponent} from '../set-mark/set-mark.component';
+import {Specialty} from '../admin-create-specialty/specialty';
 
 @Component({
   selector: 'app-students',
@@ -16,6 +17,7 @@ export class StudentsComponent implements OnInit {
   students: User[];
   groupName: string;
   role: string;
+  isThisTeacher: boolean;
 
   constructor(private _snackBar: MatSnackBar, private groupService: GroupService,
               private matDialog: MatDialog, private changeDetectorRefs: ChangeDetectorRef) {
@@ -28,9 +30,18 @@ export class StudentsComponent implements OnInit {
   loadTable() {
     const id = JSON.parse(localStorage.getItem('groupWithId'));
     this.groupName = JSON.parse(localStorage.getItem('groupName'));
+    const teacherId = JSON.parse(localStorage.getItem('teacherID'));
 
     this.groupService.getAllStudentsFromGroup(id).subscribe(data => {
       this.students = data;
+
+      this.students.forEach(x => {
+        var specialty = new Specialty();
+        specialty = JSON.parse(x.specialty);
+        console.log(specialty);
+        x.specialty = specialty.name;
+      });
+
       this.changeDetectorRefs.detectChanges();
     }, error => console.log(error));
 
