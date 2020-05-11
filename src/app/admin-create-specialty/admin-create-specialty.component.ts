@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {AdminService} from "../admin.service";
-import {Specialty} from "./specialty";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {AdminService} from '../admin.service';
+import {Specialty} from './specialty';
 
 @Component({
   selector: 'app-admin-create-specialty',
@@ -32,12 +32,12 @@ export class AdminCreateSpecialtyComponent implements OnInit {
     this.adminService.createSpecialtyS(specialty).subscribe(res => {
       if (res !== null) {
         this.onNoClick();
-        this.openSnackBar("Specialty was created successfully", "Ok");
+        this.openSnackBar('Specialty was created successfully', 'Ok');
         this.specialty = new Specialty();
       } else {
-        this.errorAlert("Specialty is already exist", "Ok");
+        this.errorAlert('Specialty is already exist', 'Ok');
       }
-    })
+    });
   }
 
   errorAlert(message: string, action: string) {

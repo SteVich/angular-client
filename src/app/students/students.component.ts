@@ -1,10 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {User} from "../auth/user";
-import {GroupService} from "../group.service";
-import {ViewGroupsInASubjectComponent} from "../view-groups-in-a-subject/view-groups-in-a-subject.component";
-import {SetMarkComponent} from "../set-mark/set-mark.component";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {User} from '../auth/user';
+import {GroupService} from '../group.service';
+import {SetMarkComponent} from '../set-mark/set-mark.component';
 
 @Component({
   selector: 'app-students',
@@ -27,8 +26,8 @@ export class StudentsComponent implements OnInit {
   }
 
   loadTable() {
-    let id = JSON.parse(localStorage.getItem("groupWithId"));
-    this.groupName = JSON.parse(localStorage.getItem("groupName"));
+    const id = JSON.parse(localStorage.getItem('groupWithId'));
+    this.groupName = JSON.parse(localStorage.getItem('groupName'));
 
     this.groupService.getAllStudentsFromGroup(id).subscribe(data => {
       this.students = data;
@@ -42,9 +41,9 @@ export class StudentsComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
-    localStorage.setItem("student", JSON.stringify(student));
+    localStorage.setItem('student', JSON.stringify(student));
 
     this.matDialog.open(SetMarkComponent, dialogConfig);
 

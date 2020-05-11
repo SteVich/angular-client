@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Group} from "../group/group";
-import {GroupService} from "../group.service";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {Group} from '../group/group';
+import {GroupService} from '../group.service';
 
 @Component({
   selector: 'app-create-group',
@@ -33,12 +33,12 @@ export class CreateGroupComponent implements OnInit {
       console.log(res);
       if (res !== null) {
         this.onNoClick();
-        this.openSnackBar("Group was created successfully", "Ok");
+        this.openSnackBar('Group was created successfully', 'Ok');
         this.group = new Group();
       } else {
-        this.errorAlert("Group is already exist", "Ok");
+        this.errorAlert('Group is already exist', 'Ok');
       }
-    })
+    });
   }
 
   errorAlert(message: string, action: string) {

@@ -1,12 +1,11 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {AdminService} from "../admin.service";
-import {Router} from "@angular/router";
-import {CreateGroupComponent} from "../create-group/create-group.component";
-import {AdminSetTeachersComponent} from "../admin-set-teachers/admin-set-teachers.component";
-import {AdminSetStudentsComponent} from "../admin-set-students/admin-set-students.component";
-import {AdminCreateSpecialtyComponent} from "../admin-create-specialty/admin-create-specialty.component";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {AdminService} from '../admin.service';
+import {Router} from '@angular/router';
+import {AdminSetTeachersComponent} from '../admin-set-teachers/admin-set-teachers.component';
+import {AdminSetStudentsComponent} from '../admin-set-students/admin-set-students.component';
+import {AdminCreateSpecialtyComponent} from '../admin-create-specialty/admin-create-specialty.component';
 
 @Component({
   selector: 'app-admin-panel',
@@ -35,7 +34,7 @@ export class AdminPanelComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
     this.matDialog.open(AdminSetTeachersComponent, dialogConfig);
 
@@ -45,7 +44,7 @@ export class AdminPanelComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
     this.matDialog.open(AdminSetStudentsComponent, dialogConfig);
   }
@@ -54,7 +53,7 @@ export class AdminPanelComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
     this.matDialog.open(AdminCreateSpecialtyComponent, dialogConfig);
   }

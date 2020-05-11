@@ -1,14 +1,13 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {SubjectService} from "../subject.service";;
-import {Subject} from "./subject";
-import {CreateSubjectComponent} from "../create-subject/create-subject.component";
-import {Teacher} from "./teacher";
-import {ChangeTeacherComponent} from "../change-teacher/change-teacher.component";
-import {Group} from "../group/group";
-import {AddGroupToSubjectComponent} from "../add-group-to-subject/add-group-to-subject.component";
-import {ViewGroupsInASubjectComponent} from "../view-groups-in-a-subject/view-groups-in-a-subject.component";
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {SubjectService} from '../subject.service';
+import {Subject} from './subject';
+import {CreateSubjectComponent} from '../create-subject/create-subject.component';
+import {ChangeTeacherComponent} from '../change-teacher/change-teacher.component';
+import {Group} from '../group/group';
+import {AddGroupToSubjectComponent} from '../add-group-to-subject/add-group-to-subject.component';
+import {ViewGroupsInASubjectComponent} from '../view-groups-in-a-subject/view-groups-in-a-subject.component';
 
 @Component({
   selector: 'app-subject',
@@ -32,15 +31,15 @@ export class SubjectComponent implements OnInit {
     this.role = localStorage.getItem('Role');
   }
 
-  loadTable(){
+  loadTable() {
     this.subjectService.getAllSubject().subscribe(data => {
-        console.log(data)
+        console.log(data);
         this.subject = data;
         this.changeDetectorRefs.detectChanges();
       }, error => console.log(error));
 
     this.subjectService.getAllGroups().subscribe(data => {
-        console.log(data)
+        console.log(data);
         this.groups = data;
         this.changeDetectorRefs.detectChanges();
       }, error => console.log(error));
@@ -51,9 +50,9 @@ export class SubjectComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
-    localStorage.setItem("subject", JSON.stringify(subject));
+    localStorage.setItem('subject', JSON.stringify(subject));
     this.matDialog.open(ChangeTeacherComponent, dialogConfig);
 
     this.loadTable();
@@ -63,7 +62,7 @@ export class SubjectComponent implements OnInit {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
-      dialogConfig.width = "20%";
+      dialogConfig.width = '20%';
 
       this.matDialog.open(CreateSubjectComponent, dialogConfig);
 
@@ -74,24 +73,20 @@ export class SubjectComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
-    localStorage.setItem("subjectIdToGroupComponent", JSON.stringify(id));
+    localStorage.setItem('subjectIdToGroupComponent', JSON.stringify(id));
 
     this.matDialog.open(ViewGroupsInASubjectComponent, dialogConfig);
-
-    this.loadTable();
   }
-
-  // todo add table column width in percentage
 
   addGroupToSubject(id: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
-    localStorage.setItem("groupsToSubject", JSON.stringify(this.groups));
-    localStorage.setItem("subjectIdToGroupComponent", JSON.stringify(id));
+    dialogConfig.width = '20%';
+    localStorage.setItem('groupsToSubject', JSON.stringify(this.groups));
+    localStorage.setItem('subjectIdToGroupComponent', JSON.stringify(id));
 
     this.matDialog.open(AddGroupToSubjectComponent, dialogConfig);
 

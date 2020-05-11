@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Subject} from "./subject/subject";
-import {FormControl} from "@angular/forms";
-import {Group} from "./group/group";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Subject} from './subject/subject';
+import {FormControl} from '@angular/forms';
+import {Group} from './group/group';
 
 const apiUrl = 'https://univer-sv-server.herokuapp.com/';
+//const apiUrl = 'http://localhost:8000/';
 
 @Injectable({
   providedIn: 'root'
@@ -39,16 +40,18 @@ export class SubjectService {
     return this.http.get(apiUrl + 'groups');
   }
 
-  addGroupToSubject(group: FormControl, id: any, groupId: any): Observable<Object> {
-    let value = JSON.stringify(group.value);
+  addGroupToSubject(group: FormControl, id: any): Observable<Object> {
+    const value = JSON.stringify(group.value);
     let groupChange = new Group();
-    groupChange.subjectId = id;
+
     groupChange = JSON.parse(value);
-    return this.http.post(apiUrl + 'addGroupToSubject', JSON.stringify(groupChange));
+    groupChange.subjectId = id;
+
+    return this.http.post(apiUrl + 'addGroupToSubject', groupChange);
   }
 
-  getAllGroupsFromSubject(id:any): Observable<any> {
-    return this.http.get(apiUrl + 'groupsFromSubject', id);
+  getAllGroupsFromSubject(id: any): Observable<any> {
+    return this.http.get(apiUrl + 'groupsFromSubject/' + id);
   }
 
 }

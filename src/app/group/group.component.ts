@@ -1,12 +1,12 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {Group} from "./group";
-import {Student} from "./student";
-import {GroupService} from "../group.service";
-import {CreateGroupComponent} from "../create-group/create-group.component";
-import {AddStudentsComponent} from "../add-students/add-students.component";
-import {Router} from "@angular/router";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {Group} from './group';
+import {Student} from './student';
+import {GroupService} from '../group.service';
+import {CreateGroupComponent} from '../create-group/create-group.component';
+import {AddStudentsComponent} from '../add-students/add-students.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -41,9 +41,9 @@ export class GroupComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
-    localStorage.setItem("group", JSON.stringify(group));
+    localStorage.setItem('group', JSON.stringify(group));
 
     this.matDialog.open(AddStudentsComponent, dialogConfig);
 
@@ -54,7 +54,7 @@ export class GroupComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "20%";
+    dialogConfig.width = '20%';
 
     this.matDialog.open(CreateGroupComponent, dialogConfig);
 
@@ -62,8 +62,8 @@ export class GroupComponent implements OnInit {
   }
 
   viewStudents(row: any) {
-    localStorage.setItem("groupWithId", JSON.stringify(row.id));
-    localStorage.setItem("groupName", JSON.stringify(row.name));
+    localStorage.setItem('groupWithId', JSON.stringify(row.id));
+    localStorage.setItem('groupName', JSON.stringify(row.name));
     this.router.navigate(['group']);
   }
 }

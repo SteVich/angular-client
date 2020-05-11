@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
-import {User} from "../auth/user";
-import {Router} from "@angular/router";
-import {AuthService} from "../auth.service";
-import {AppComponent} from "../app.component";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {ErrorStateMatcher} from "@angular/material/core";
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {User} from '../auth/user';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth.service';
+import {AppComponent} from '../app.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-edit-profile',
@@ -27,7 +27,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.setItem('LoggedIn', 'false')
+    localStorage.setItem('LoggedIn', 'false');
     this.loginForm = this.formBuilder.group({
       'usernameOrEmail': [null, Validators.required],
       'password': [null, Validators.required]
@@ -35,18 +35,18 @@ export class EditProfileComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    var username = this.getUsername(form)
-    var password = this.getPassword(form)
+    const username = this.getUsername(form);
+    const password = this.getPassword(form);
 
     this.authService.login(form).subscribe(data => {
       this.user = data[0];
 
       if (this.user.username === username && this.user.password === password) {
-        localStorage.setItem('LoggedIn', 'true')
+        localStorage.setItem('LoggedIn', 'true');
         this.appComponent.isLoggedIn$ = true;
         this.router.navigate(['tables']);
       } else {
-        this.errorAlert("Bad credentials, please try again", "Ok");
+        this.errorAlert('Bad credentials, please try again', 'Ok');
       }
     }, error => console.log(error));
 

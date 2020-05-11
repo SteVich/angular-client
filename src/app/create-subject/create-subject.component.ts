@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Subject} from "../subject/subject";
-import {SubjectService} from "../subject.service";
-import {Teacher} from "../subject/teacher";
-import {FormGroup} from "@angular/forms";
-import {User} from "../auth/user";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {Subject} from '../subject/subject';
+import {SubjectService} from '../subject.service';
+import {Teacher} from '../subject/teacher';
+import {User} from '../auth/user';
 
 @Component({
   selector: 'app-create-subject',
@@ -28,8 +27,8 @@ export class CreateSubjectComponent implements OnInit {
   ngOnInit() {
     this.newSubject = new Subject();
     this.subjectService.getAllTeachers().subscribe(data => {
-      this.teachers = data
-    })
+      this.teachers = data;
+    });
   }
 
   onNoClick(): void {
@@ -42,12 +41,12 @@ export class CreateSubjectComponent implements OnInit {
       console.log(res);
       if (res !== null) {
         this.onNoClick();
-        this.openSnackBar("Subject was added successfully", "Ok");
+        this.openSnackBar('Subject was added successfully', 'Ok');
         this.newSubject = new Subject();
       } else {
-        this.errorAlert("Subject is already exist", "Ok");
+        this.errorAlert('Subject is already exist', 'Ok');
       }
-    })
+    });
   }
 
   errorAlert(message: string, action: string) {

@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {User} from "../auth/user";
-import {FormControl, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {AdminService} from "../admin.service";
+import {User} from '../auth/user';
+import {FormControl, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {AdminService} from '../admin.service';
 
 @Component({
   selector: 'app-admin-set-students',
@@ -12,7 +12,7 @@ import {AdminService} from "../admin.service";
 })
 export class AdminSetStudentsComponent implements OnInit {
 
-  users: User[]
+  users: User[];
   studentsForm = new FormControl('', [Validators.required]);
 
   constructor(
@@ -27,7 +27,7 @@ export class AdminSetStudentsComponent implements OnInit {
     this.adminService.getFutureStudents()
       .subscribe(data => {
         this.users = data;
-        console.log(this.users)
+        console.log(this.users);
         this.changeDetectorRefs.detectChanges();
       }, error => console.log(error));
   }
@@ -40,11 +40,11 @@ export class AdminSetStudentsComponent implements OnInit {
     this.adminService.confirmStudents(students).subscribe(res => {
       console.log(res);
       if (res !== null) {
-        this.openSnackBar("Students was confirmed successfully", "Ok");
+        this.openSnackBar('Students was confirmed successfully', 'Ok');
       } else {
-        this.errorAlert("Something went wrong", "Ok");
+        this.errorAlert('Something went wrong', 'Ok');
       }
-    })
+    });
     this.onNoClick();
   }
 

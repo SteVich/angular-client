@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {GroupService} from "../group.service";
-import {Group} from "../group/group";
-import {User} from "../auth/user";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {GroupService} from '../group.service';
+import {User} from '../auth/user';
 
 @Component({
   selector: 'app-set-mark',
@@ -22,7 +21,7 @@ export class SetMarkComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem("student"));
+    this.user = JSON.parse(localStorage.getItem('student'));
   }
 
   onNoClick(): void {
@@ -34,11 +33,11 @@ export class SetMarkComponent implements OnInit {
       console.log(res);
       if (res !== null) {
         this.onNoClick();
-        this.openSnackBar("Mark was updated successfully", "Ok");
+        this.openSnackBar('Mark was updated successfully', 'Ok');
       } else {
-        this.errorAlert("Something went wrong", "Try again");
+        this.errorAlert('Something went wrong', 'Try again');
       }
-    })
+    });
   }
 
   errorAlert(message: string, action: string) {

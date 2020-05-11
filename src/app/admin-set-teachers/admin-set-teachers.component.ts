@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {User} from "../auth/user";
-import {AdminService} from "../admin.service";
-import {FormControl, Validators} from "@angular/forms";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {User} from '../auth/user';
+import {AdminService} from '../admin.service';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-admin-set-teachers',
@@ -12,7 +12,7 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class AdminSetTeachersComponent implements OnInit {
 
-  users: User[]
+  users: User[];
   teacherForm = new FormControl('', [Validators.required]);
 
   constructor(
@@ -40,11 +40,11 @@ export class AdminSetTeachersComponent implements OnInit {
       console.log(res);
       if (res !== null) {
         this.onNoClick();
-        this.openSnackBar("Teacher was created successfully", "Ok");
+        this.openSnackBar('Teacher was created successfully', 'Ok');
       } else {
-        this.errorAlert("Something went wrong", "Ok");
+        this.errorAlert('Something went wrong', 'Ok');
       }
-    })
+    });
   }
 
   errorAlert(message: string, action: string) {

@@ -1,4 +1,4 @@
-import {User} from "../auth/user";
+import {User} from '../auth/user';
 
 export class Group {
   id: number;

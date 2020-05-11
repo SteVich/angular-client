@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {GroupService} from "../group.service";
-import {Group} from "../group/group";
-import {User} from "../auth/user";
-import {FormControl, Validators} from "@angular/forms";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {GroupService} from '../group.service';
+import {Group} from '../group/group';
+import {User} from '../auth/user';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-students',
@@ -25,11 +25,11 @@ export class AddStudentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.group = JSON.parse(localStorage.getItem("group"));
+    this.group = JSON.parse(localStorage.getItem('group'));
 
     this.groupService.getAllStudents().subscribe(data => {
-      this.students = data
-    })
+      this.students = data;
+    });
   }
 
   onNoClick(): void {
@@ -37,12 +37,12 @@ export class AddStudentsComponent implements OnInit {
   }
 
   addStudents(users: FormControl) {
-    console.log(users)
+    console.log(users);
     this.groupService.addStudents(users, this.group.id).subscribe();
     this.group = new Group();
     this.studentsForm = new FormControl('', [Validators.required]);
     this.onNoClick();
-    this.openSnackBar("Students was added successfully", "Ok");
+    this.openSnackBar('Students was added successfully', 'Ok');
   }
 
   openSnackBar(message: string, action: string) {

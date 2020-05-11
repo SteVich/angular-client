@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Group} from "../group/group";
-import {SubjectService} from "../subject.service";
-import {Router} from "@angular/router";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {Group} from '../group/group';
+import {SubjectService} from '../subject.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-view-groups-in-a-subject',
@@ -22,10 +22,13 @@ export class ViewGroupsInASubjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    let id = JSON.parse(localStorage.getItem("subjectIdToGroupComponent"));
+    const id = JSON.parse(localStorage.getItem('subjectIdToGroupComponent'));
+
+    console.log(id);
     this.subjectService.getAllGroupsFromSubject(id).subscribe(data => {
-      this.groups = data
-    })
+      console.log(data);
+      this.groups = data;
+    });
   }
 
   onNoClick(): void {
@@ -33,8 +36,8 @@ export class ViewGroupsInASubjectComponent implements OnInit {
   }
 
   viewMembers(id: any, name: string) {
-    localStorage.setItem("groupWithId", JSON.stringify(id));
-    localStorage.setItem("groupName", JSON.stringify(name));
+    localStorage.setItem('groupWithId', JSON.stringify(id));
+    localStorage.setItem('groupName', JSON.stringify(name));
     this.router.navigate(['group']);
     this.dialogRef.close();
   }

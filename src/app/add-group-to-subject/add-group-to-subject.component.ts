@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Group} from "../group/group";
-import {SubjectService} from "../subject.service";
+import {FormControl, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialogRef} from '@angular/material/dialog';
+import {Group} from '../group/group';
+import {SubjectService} from '../subject.service';
 
 @Component({
   selector: 'app-add-group-to-subject',
@@ -12,8 +12,8 @@ import {SubjectService} from "../subject.service";
 })
 export class AddGroupToSubjectComponent implements OnInit {
 
-  groups: Group[]
-  id:string;
+  groups: Group[];
+  id: number;
   groupForm = new FormControl('', [Validators.required]);
 
   constructor(
@@ -24,8 +24,8 @@ export class AddGroupToSubjectComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.groups = JSON.parse(localStorage.getItem("groupsToSubject"));
-   this.id = JSON.parse(localStorage.getItem("subjectIdToGroupComponent"));
+   this.groups = JSON.parse(localStorage.getItem('groupsToSubject'));
+   this.id = JSON.parse(localStorage.getItem('subjectIdToGroupComponent'));
   }
 
   onNoClick(): void {
@@ -33,14 +33,14 @@ export class AddGroupToSubjectComponent implements OnInit {
   }
 
   addGroup(group: FormControl) {
-    this.subjectService.addGroupToSubject(group, this.id, group.value.id).subscribe(res => {
+    this.subjectService.addGroupToSubject(group, this.id).subscribe(res => {
       if (res !== null) {
         this.onNoClick();
-        this.openSnackBar("Group was added successfully", "Ok");
+        this.openSnackBar('Group was added successfully', 'Ok');
       } else {
-        this.errorAlert("Something went wrong", "Ok");
+        this.errorAlert('Something went wrong', 'Ok');
       }
-    })
+    });
   }
 
   errorAlert(message: string, action: string) {
