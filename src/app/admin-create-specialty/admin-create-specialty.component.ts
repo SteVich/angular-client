@@ -29,15 +29,19 @@ export class AdminCreateSpecialtyComponent implements OnInit {
   }
 
   createSpecialty(specialty: Specialty) {
-    this.adminService.createSpecialtyS(specialty).subscribe(res => {
-      if (res !== null) {
-        this.onNoClick();
-        this.openSnackBar('Specialty was created successfully', 'Ok');
-        this.specialty = new Specialty();
-      } else {
-        this.errorAlert('Specialty is already exist', 'Ok');
-      }
-    });
+    if (specialty.name === undefined) {
+      this.errorAlert('Please provide specialty', 'Ok');
+    } else {
+      this.adminService.createSpecialtyS(specialty).subscribe(res => {
+        if (res !== null) {
+          this.onNoClick();
+          this.openSnackBar('Specialty was created successfully', 'Ok');
+          this.specialty = new Specialty();
+        } else {
+          this.errorAlert('Specialty is already exist', 'Ok');
+        }
+      });
+    }
   }
 
   errorAlert(message: string, action: string) {

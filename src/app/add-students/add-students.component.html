@@ -5,7 +5,7 @@
     <mat-select [formControl]="studentsForm" multiple>
       <mat-option *ngFor="let student of students" [value]="student">{{student.name}}</mat-option>
     </mat-select>
-    <mat-error *ngIf="studentsForm.hasError('required')">Please choose students</mat-error>
+    <mat-error *ngIf="studentsForm.hasError('required') || !studentsForm.valid">Please choose students</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

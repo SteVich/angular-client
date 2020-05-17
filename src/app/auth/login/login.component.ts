@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
       if (this.user !== undefined && this.user.username === username && this.user.password === password) {
         localStorage.setItem('LoggedIn', 'true');
         localStorage.setItem('Role', this.user.role);
+        localStorage.setItem('UserId', this.user.id.toString());
 
         this.appComponent.isLoggedIn$ = true;
         this.appComponent.userRole = this.user.role;

@@ -29,16 +29,19 @@ export class CreateGroupComponent implements OnInit {
   }
 
   createGroup(group: Group) {
-    this.groupService.addGroup(group).subscribe(res => {
-      console.log(res);
-      if (res !== null) {
-        this.onNoClick();
-        this.openSnackBar('Group was created successfully', 'Ok');
-        this.group = new Group();
-      } else {
-        this.errorAlert('Group is already exist', 'Ok');
-      }
-    });
+    if (group.name === undefined) {
+      this.errorAlert('Please provide group name', 'Ok');
+    } else {
+      this.groupService.addGroup(group).subscribe(res => {
+        if (res !== null) {
+          this.onNoClick();
+          this.openSnackBar('Group was created successfully', 'Ok');
+          this.group = new Group();
+        } else {
+          this.errorAlert('Group is already exist', 'Ok');
+        }
+      });
+    }
   }
 
   errorAlert(message: string, action: string) {

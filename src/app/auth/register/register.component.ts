@@ -27,6 +27,9 @@ export class RegisterComponent implements OnInit {
 
   specialties: Specialty[];
 
+  trueVal = true;
+  falseVal = false;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService,
               private _snackBar: MatSnackBar, private adminService: AdminService) {
   }
@@ -49,14 +52,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onFormSubmit(form: NgForm) {
-    let user = new User();
-    user = JSON.parse(JSON.stringify(form));
-    console.log(user.specialty);
-    console.log(user.course);
+    const user = JSON.parse(JSON.stringify(form));
+
+    console.log(JSON.parse(JSON.stringify(form)));
     if (user.isTeacher === false && user.specialty === null) {
       this.errorAlert('Specialty does not set', 'Ok');
     } else if (user.isTeacher === false && user.course === null) {
       this.errorAlert('Course does not set', 'Ok');
+    } else if (user.isTeacher === true && user.specialty === null) {
+      this.errorAlert('Specialty does not set', 'Ok');
     } else {
       this.authService.register(form)
         .subscribe(res => {

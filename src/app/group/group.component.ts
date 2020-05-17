@@ -45,9 +45,13 @@ export class GroupComponent implements OnInit {
 
     localStorage.setItem('group', JSON.stringify(group));
 
-    this.matDialog.open(AddStudentsComponent, dialogConfig);
+    const dialogRef = this.matDialog.open(AddStudentsComponent, dialogConfig);
 
-    this.loadTable();
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.loadTable();
+      }
+    );
   }
 
   addGroup() {
@@ -56,9 +60,13 @@ export class GroupComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '20%';
 
-    this.matDialog.open(CreateGroupComponent, dialogConfig);
+    const dialogRef = this.matDialog.open(CreateGroupComponent, dialogConfig);
 
-    this.loadTable();
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.loadTable();
+      }
+    );
   }
 
   viewStudents(row: any) {

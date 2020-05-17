@@ -8,6 +8,7 @@ import {ChangeTeacherComponent} from '../change-teacher/change-teacher.component
 import {Group} from '../group/group';
 import {AddGroupToSubjectComponent} from '../add-group-to-subject/add-group-to-subject.component';
 import {ViewGroupsInASubjectComponent} from '../view-groups-in-a-subject/view-groups-in-a-subject.component';
+import {Teacher} from './teacher';
 
 @Component({
   selector: 'app-subject',
@@ -21,6 +22,9 @@ export class SubjectComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'teacherName', 'info'];
   groups: Group[];
   role: string;
+  teachers: Teacher[]
+
+  subjects: Subject[];
 
   constructor(private _snackBar: MatSnackBar, private subjectService: SubjectService,
               private matDialog: MatDialog, private changeDetectorRefs: ChangeDetectorRef) {
@@ -29,20 +33,20 @@ export class SubjectComponent implements OnInit {
   ngOnInit() {
     this.loadTable();
     this.role = localStorage.getItem('Role');
+    console.log(this.subjects);
   }
 
   loadTable() {
     this.subjectService.getAllSubject().subscribe(data => {
-        console.log(data);
-        this.subject = data;
-        this.changeDetectorRefs.detectChanges();
-      }, error => console.log(error));
+      const userId = JSON.parse(localStorage.getItem('UserId'));
+      this.subjects = data;
+      this.changeDetectorRefs.detectChanges();
+    }, error => console.log(error));
 
     this.subjectService.getAllGroups().subscribe(data => {
-        console.log(data);
-        this.groups = data;
-        this.changeDetectorRefs.detectChanges();
-      }, error => console.log(error));
+      this.groups = data;
+      this.changeDetectorRefs.detectChanges();
+    }, error => console.log(error));
 
   }
 
@@ -53,20 +57,29 @@ export class SubjectComponent implements OnInit {
     dialogConfig.width = '20%';
 
     localStorage.setItem('subject', JSON.stringify(subject));
-    this.matDialog.open(ChangeTeacherComponent, dialogConfig);
 
-    this.loadTable();
+    const dialogRef = this.matDialog.open(ChangeTeacherComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.loadTable();
+      }
+    );
   }
 
   addSubject() {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.width = '20%';
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '20%';
 
-      this.matDialog.open(CreateSubjectComponent, dialogConfig);
+    const dialogRef = this.matDialog.open(CreateSubjectComponent, dialogConfig);
 
-    this.loadTable();
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.loadTable();
+      }
+    );
   }
 
   showGroups(id: any) {
@@ -88,8 +101,12 @@ export class SubjectComponent implements OnInit {
     localStorage.setItem('groupsToSubject', JSON.stringify(this.groups));
     localStorage.setItem('subjectIdToGroupComponent', JSON.stringify(id));
 
-    this.matDialog.open(AddGroupToSubjectComponent, dialogConfig);
+    const dialogRef = this.matDialog.open(AddGroupToSubjectComponent, dialogConfig);
 
-    this.loadTable();
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.loadTable();
+      }
+    );
   }
 }

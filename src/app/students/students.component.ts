@@ -36,9 +36,9 @@ export class StudentsComponent implements OnInit {
       this.students = data;
 
       this.students.forEach(x => {
-        var specialty = new Specialty();
+        let specialty = new Specialty();
         specialty = JSON.parse(x.specialty);
-        console.log(specialty);
+
         x.specialty = specialty.name;
       });
 
@@ -56,9 +56,14 @@ export class StudentsComponent implements OnInit {
 
     localStorage.setItem('student', JSON.stringify(student));
 
-    this.matDialog.open(SetMarkComponent, dialogConfig);
+    const dialogRef = this.matDialog.open(SetMarkComponent, dialogConfig);
 
-    this.loadTable();
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.loadTable();
+      }
+    );
+
   }
 
 }

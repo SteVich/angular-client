@@ -7,13 +7,11 @@
 
     </div>
     <div class="button-row" align="center">
-      <button type="submit" mat-flat-button class="button-row" color=primary (click)="loadTable()">Update table
-      </button>
       <button type="submit" mat-flat-button class="button-row" color=primary (click)="addSubject()" *ngIf="role == 'admin'">
         Add subject</button>
     </div>
 
-    <table mat-table [dataSource]="subject" class="example-table">
+    <table mat-table [dataSource]="subjects" class="example-table">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>Id</th>
         <td mat-cell *matCellDef="let row">{{row.id}}</td>

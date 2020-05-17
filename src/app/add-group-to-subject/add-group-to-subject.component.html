@@ -5,7 +5,7 @@
     <mat-select [formControl]="groupForm">
       <mat-option *ngFor="let option of groups" [value]="option">{{option.name}}</mat-option>
     </mat-select>
-    <mat-error *ngIf="groupForm.hasError('required')">Please choose any user</mat-error>
+    <mat-error *ngIf="groupForm.hasError('required') || !groupForm.valid">Please choose any teacher</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

@@ -1,13 +1,14 @@
 <h1 mat-dialog-title>Select new teacher</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <mat-select  [(value)]="subject.teacher">
+    <mat-select  [formControl]="teacherForm">
       <mat-option *ngFor="let option of teachers" [value]="option">{{ option.name }}</mat-option>
     </mat-select>
+    <mat-error *ngIf="teacherForm.hasError('required')">Please choose any user</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="changeTeacher(subject)">Change</button>
+  <button mat-button [disabled]="!teacherForm.valid" (click)="changeTeacher(teacherForm)">Change</button>
 </div>
 

@@ -36,17 +36,23 @@ export class CreateSubjectComponent implements OnInit {
   }
 
   createSubject(newSubject: Subject, teacher: User) {
-    newSubject.teacher = teacher;
-    this.subjectService.addSubject(newSubject).subscribe(res => {
-      console.log(res);
-      if (res !== null) {
-        this.onNoClick();
-        this.openSnackBar('Subject was added successfully', 'Ok');
-        this.newSubject = new Subject();
-      } else {
-        this.errorAlert('Subject is already exist', 'Ok');
-      }
-    });
+    if (newSubject.subjectName === undefined) {
+      this.errorAlert('Please provide subject name', 'Ok');
+    } else if (newSubject.teacher === undefined) {
+      this.errorAlert('Please set teacher', 'Ok');
+    } else {
+      newSubject.teacher = teacher;
+      this.subjectService.addSubject(newSubject).subscribe(res => {
+        console.log(res);
+        if (res !== null) {
+          this.onNoClick();
+          this.openSnackBar('Subject was added successfully', 'Ok');
+          this.newSubject = new Subject();
+        } else {
+          this.errorAlert('Subject is already exist', 'Ok');
+        }
+      });
+    }
   }
 
   errorAlert(message: string, action: string) {

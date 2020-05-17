@@ -40,33 +40,50 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-checkbox formControlName="isTeacher">I am a teacher</mat-checkbox>
+      <mat-radio-group aria-label="Select an option" formControlName="isTeacher">
+        <mat-radio-button [value]="falseVal">I am a student</mat-radio-button>
+        <mat-expansion-panel [disabled]="registerForm.get('isTeacher').value === true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              If so, expand this
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field class="example-full-width">
+            <mat-label>Specialties..</mat-label>
+            <mat-select formControlName="specialty">
+              <mat-option *ngFor="let option of specialties" [value]="option">{{option.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-select formControlName="course" placeholder="Course">
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+              <mat-option value="5">5</mat-option>
+              <mat-option value="6">6</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-expansion-panel>
 
-      <mat-expansion-panel [disabled]="registerForm.get('isTeacher').value === true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            I am a student
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-form-field class="example-full-width">
-          <mat-label>Specialties..</mat-label>
-          <mat-select formControlName="specialty">
-            <mat-option *ngFor="let option of specialties" [value]="option">{{option.name}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-select formControlName="course" placeholder="Course">
-            <mat-option value="1">1</mat-option>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="3">3</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="5">5</mat-option>
-            <mat-option value="6">6</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-expansion-panel>
+        <mat-radio-button [value]="trueVal">I am a teacher</mat-radio-button>
+        <mat-expansion-panel [disabled]="registerForm.get('isTeacher').value === false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              If so, expand this
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field class="example-full-width">
+            <mat-label>Specialties..</mat-label>
+            <mat-select formControlName="specialty">
+              <mat-option *ngFor="let option of specialties" [value]="option">{{option.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-expansion-panel>
+      </mat-radio-group>
+
       <div class="button-row">
-        <button type="submit" [disabled]="!registerForm.valid" mat-flat-button color="primary">Register</button>
+        <button type="submit" mat-flat-button color="primary">Register</button>
       </div>
     </form>
   </mat-card>

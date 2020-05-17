@@ -4,6 +4,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialogRef} from '@angular/material/dialog';
 import {SubjectService} from '../subject.service';
 import {Subject} from '../subject/subject';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-change-teacher',
@@ -14,6 +15,7 @@ export class ChangeTeacherComponent implements OnInit {
 
   teachers: Teacher[];
   subject: Subject;
+  teacherForm = new FormControl('', [Validators.required]);
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -34,10 +36,13 @@ export class ChangeTeacherComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  changeTeacher(subject: Subject) {
-    this.subjectService.changeTeacherService(subject, this.subject.id).subscribe();
-    this.onNoClick();
-    this.openSnackBar('Teacher was changed successfully', 'Ok');
+  changeTeacher(teacherForm: FormControl) {
+    this.subjectService.changeTeacherService(teacherForm, this.subject.id).subscribe(res => {
+      if (res !== null) {
+        this.onNoClick();
+        this.openSnackBar('Teacher was changed successfully', 'Ok');
+      }
+    });
   }
 
   openSnackBar(message: string, action: string) {
